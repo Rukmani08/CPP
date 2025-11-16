@@ -1,0 +1,4 @@
+﻿  CPPPracticalOnlypractice.cpp
+C:\Users\basaid\Desktop\CPP_PRAC\CPPPracticalOnlypractice\CPPPracticalOnlypractice.cpp(202,1): warning C4717: 'operator<<': recursive on all control paths, function will cause runtime stack overflow
+C:\Users\basaid\Desktop\CPP_PRAC\CPPPracticalOnlypractice\CPPPracticalOnlypractice.cpp(197,1): warning C4717: 'operator>>': recursive on all control paths, function will cause runtime stack overflow
+  CPPPracticalOnlypractice.vcxproj -> C:\Users\basaid\Desktop\CPP_PRAC\CPPPracticalOnlypractice\x64\Debug\CPPPracticalOnlypractice.exe
