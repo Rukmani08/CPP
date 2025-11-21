@@ -1,0 +1,70 @@
+// Real-Life Coding Assignment: “Smart Inventory Tracker for a Mobile Shop”
+
+
+import java.util.Scanner;
+
+public class MoblieShopAssign {
+
+   static  void sort(int a[]){  //bubble sort
+       boolean flag=true;
+       for(int i=a.length-1;i>0;i--){
+           for(int j=0;j<i;j++)
+           {
+               if(a[j]>a[j+1]){
+                   int temp=a[j];
+                   a[j]=a[j+1];
+                   a[j+1]=temp;
+                   flag=false;
+
+               }
+           }
+           if(flag==true){
+               break;
+           }
+       }
+   }
+
+
+   static int Binary_Search(int a[],int start,int end, int key){
+//       start=0;
+//       end=a.length-1;
+       int mid=(start+end)/2;
+       while(start<end){
+           if(a[mid]==key){
+               return mid;
+           } else if (a[mid]<key) {
+               Binary_Search( a,mid+1,end, key);
+           }else{
+               Binary_Search( a,0,mid-1, key);
+           }
+       }
+       return -1;
+   }
+
+
+
+   static void Print(int a[]){
+       for(int i:a){
+           System.out.print(i+", ");
+       }
+       System.out.println();
+   }
+    public static void main(String[] args) {
+        int arr[]={14999, 8999, 12999, 19999, 9999, 17999, 7999 };
+        System.out.println("Original Prices:");
+        MoblieShopAssign.Print(arr);
+
+        MoblieShopAssign.sort( arr);
+        System.out.println("Sorted Prices:"+" ,");
+        MoblieShopAssign.Print(arr);
+
+        System.out.println("Enter price to search:");
+        Scanner sc=new Scanner(System.in);
+        int b=sc.nextInt();
+
+        int ans=Binary_Search(arr,0,arr.length-1, b);
+        System.out.println("Price found at index:"+ans);
+
+    }
+
+}
