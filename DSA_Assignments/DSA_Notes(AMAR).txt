@@ -1,0 +1,806 @@
+DSA NOTES-------------------------------------------------------------------------
+
+
+Data str is a process of storing data such that it is easy and fast to access data with reference to its applin.
+
+1>stack-notification stack (LIFO)
+2>Queue-Message in WhatsApp (fifo)
+3>LInked List
+one Reels connected(relatable) to the other. 
+
+4>Tree
+
+5>Graph->Map-> location and distane
+
+
+Q.implement stack
+Q.impliment stack using queue.
+Q.Convert binary to decimal using any Data structure.(Product based)
+
+
+Examples of DS
+stack
+queue
+linked list
+tree
+graph
+
+on memeory:-
+1>static:- memeory allocated at compile time.easy to give:int a[10];(c++)
+once allocated cant changed(drawback)
+memeory allocation was on prediction may have underflow or overflow.
+
+static: stack, queue, graph
+
+dynamic: Linked list tree
+2>dynamic:- memeory allocated at runtime time.
+may need cammands to give: int a[]= new int[20].
+once allocated can change as per need(drawback)
+memeory allocation  is done on demmand.
+
+
+
+
+
+on access Linear and non-linear
+Linear:- accesse one after another
+easy to code easy to understand
+-ve:slow
+
+NOn Linear:- accesse direct or via some giuided function.
+complex to code as neeed special attention
+need time to understand and code
++ve:fast accesss
+
+
+Q ADT:- Abstract Data types.
+List of operations one must implement in order to implement any data structure. it talks about standardization.
+
+DSA are complex entities. They require specific sets of operation to operate on, to access to store or to retrieve information
+Hence list of operation are must.
+
+
+1>Stack
+
+Single sided
+LIFO
+linear structure
+
+push(10)->insert
+pop()->remove an ele
+
+Q.element Accessing  from the mid of stack is not possible.
+
+
+Diagram of stack and implement stack
+
+push accept an ele on stack
+tos+1
+void push(int e){
+tos++;
+stack[tos]=e;
+stack[++tos]=e;->in one line
+}
+
+
+tos->-1(no dsata is there in stack)
+
+Boolean is_full(){
+if(tos==Maxsize-1){ return true;
+}else{
+return false;
+}
+
+
+in one line  return  (tos==Maxsize-1);
+}
+
+
+pop---------------------------------------------------------------------------
+in pop(){
+
+int temp=stack[tos];
+ tos--;
+return (temp);
+
+one line return (stack[tos--]);
+}
+
+
+Boolean is_empty(){
+  if(tos==-1){
+     return true;
+
+}
+else{return false;}
+}
+
+
+void print_stack(){\\in LIFO
+   for(int i=tos;i>=0;i--){
+SOP(stack[i]);}
+} 
+
+
+
+int peek()//only return ele on top
+   {  return (stack[tos]);
+}
+
+
+Q why initially tos is -1
+stack-   0-maxsize-1
+-1 stays outside the stack
+
+Q.array have index always starts from 0.
+ arr itself is a base address swe dont have to add anything into it so  we have 0 as a starting index.
+
+
+why we use do while loop in menu driven code
+do{
+}while()->condition check on exit
+
+Q.implement stack using ADT
+ push, pop peek print Exit
+
+
+ passcode to trvxr3to
+
+
+Q.how recursion is implemented by using stack?
+
+2>reverse a string
+add one cahr at a time till string is over then pop characters keep adding them to string and return reverse string
+
+Q2.reverse a string using stack
+Q3Converting dec to binary
+Q4checking wellness of control{}()[]
+{{{}}}: no error
+{{}}}: Erro
+{{{}}: Error
+
+Q5>Modify above code to use Boolean(pattern)-->true or false
+
+
+Q6.Expression conversion and evaluation different typees of expressions
+
+prefix (+ab) for software
+infix  (a+b) created and used for human
+postfix (ab+)  for hardware load a, load b, add a,b
+
+Q.prefix and postfix for whom?
+
+.java (source)->.class(bytecode(it is prefix))->jvm(s/w)->machine code(postfix)
+
+convert:a+b *c-d     bc*   a+bc*=  abc*+    -d=  abc*+d-
+
+Q .postfix and prefix for a particular Expression (CCEE)
+
+((a+b/c)*(d/e+f*g))
+ prefix:-
+  /bc   a+ /bc  =+a/bc
+  
+/de   *fg  +/de*fg
+
+*+a/bc+/de*fg
+
+Q >Converrting in to prefix and postfix(program).(Assignment)
+
+
+*/---2
++- ----1
+() ----0
+
+Algo to evaluate any postfix expression (CCEE)
+
+
+Q.1  Converting Any character to digit------
+  c-'0'=digit  it converts single character to digit
+
+
+Q>123+*8-   (CCEE)
+
+
+Algorithm to Evaluate the prefix exp
+
+
+-+7*45+20
+
+
+
+
+
+
+
+
+   4   7  +=   27-2=25
+   5 * 20
+   2
+2
+0
+
+
+
+
+DAY 2-----------------------------------------------------------------(12/11/25)
+
+QUEUE:- It is double ended linear structure(FIFO) operates from either side for diff operations. 
+
+
+if we add an element then rear will be increamented.
+if we delete an element front will be increamented.
+
+FIFO
+
+we cant operate from the mid line of queue.
+
+
+Q1.once move ahead it cant reclaim free spaces that have been available due to dequeue.
+front and rear are  moving  in only one direction.
+
+
+SOL to Above Problem: Use Circular Queue........
+
+implememntiing circular Queue
+
+Q2.Explain printing all ele from circular queue.(interview Q)
+
+Circular Queue :-  
+
+
+we add extra member as count: to count the element in circular queue.
+void print_queue()//in FIFO-->front to
+rear
+{
+int i=front,c=0;
+while(c<count)
+{
+
+System.out.print(queue[i]+" - ");
+i=(i+1)%MaxSize;
+c++;
+
+}
+
+}
+
+
+
+3>PRIORITY QUEUE: follow priority no LIFO AND FIFO
+
+6,8,1,10,5
+1>ASCENDING :-1,5,6,8,10
+
+
+2>DESCENDING:10,8,6,5,1
+
+
+
+Q.in order to modify implememnt priority Queue  we would  modify enqueue of linear queue which wiil keep data in sorted order as per need.
+
+4>D-QUEUE:- double ended queue  dequeue and equeue fronm both sides.
+
+                       ->
+                       <-    D-queue   ->
+                                       <-
+
+Application:-
+1> Music playlist
+2> In communication as 
+3>In streaming media.
+4>In data transfer.(should follow the sequence)
+5>In any type of scheduling task, job, or process.
+Q.  Generate binary to series up to n ,where n is entered by the user ( (Interview ).)
+ n=5
+1---1
+10---2
+11===3
+100---4
+101---5
+110--6
+111---7
+
+
+
+
+Q.Question: Best Time to Buy and Sell a Share(interview)
+(Using Queue - 15 Days Price Window)--(Interview)
+
+Q.Simulate Bidding Process for an Item (Only Bid Amounts)(interview)
+
+how to solve any dsa problem:-----
+1.methods: string,collections
+
+write your own notes.
+2. how to use:code ,concept of generic
+
+   arrraydequeu,hashmap,arraylist,-----widely used in ds
+
+3> DS  applicatin or nature
+Revise:----
+
+stack and queue
+
+
+Q.implment two queues in a single array
+
+
+
+Assignment:--    
+Q.IMplement a queue which is FIFO structure using stack structure .
+Should support Enque/Dequeu operation along with printing of contenets in queue FIFO manner.
+
+Q2. Implement stck using one queue :- enquee and dequeue in same queue(interview Q)
+
+
+
+Q.
+mostly used ds:graph
+most poweful ds: linked list:- every ds uses the concept of liked list.
+
+Q.Diff between pointer and reference?
+
+
+
+
+Day3--------------------------------------------------------Date:13/11/25
+
+Linked list:
+Colln of nodes arranged in a sequential manner,linear, dynamic , can operate from either side ,from midside.
+
+Node :-Node is a variable which contains data and a pointer which is pointing to another variable.
+
+   Data|pointer to next 
+
+does data has multiple value?
+
+
+
+class Node{
+ int data;
+  NOde next;//self ref pointer/ref-> would refer to the same type as type of pointer/ref(itself).
+
+Node(int data){
+
+  this.data=data;
+  this.next=null;//no ref to any
+}
+
+}
+
+Node n = new Node(10);// node n contain value 10 and refering to null and has an address ex:1800
+
+
+Node root;// creating a node root
+root =n;// root=1800 
+
+
+structure of linked list.
+root
+|10|2000|->|20|3100|->|30|null|
+   1200            2000     3100
+
+
+
+Q>Do u know AGC(Automatic garbage collection)(interview)
+if any data is not refernced by any pointer/ref then this data will be automatically released from the memory. 
+
+if root node losts then every next nodes also losts.
+
+Node t = root; t=1200
+t=t.next ;   t=2000
+
+1st/left should be root only
+right most /last has .next as null.
+
+
+
+
+
+
+Q.Creating in-place /im-place sorting for linked list.
+Permanent changes done to linked list
+
+✅ What does “in-place sorting” mean?
+
+In-place sorting means:
+
+You sort the linked list without creating a new list.
+
+No extra arrays, no extra linked list.
+
+You only rearrange (swap) the data of nodes inside the same linked list.
+
+Changes are permanent to the original list.
+
+So the original linked list gets sorted → permanently modified.
+
+using bubble sort.------------------------------------------------------------------
+
+Bubble sort works by repeatedly swapping adjacent elements if they are in the wrong order.
+
+Linked list bubble sort is easy because:---------------------------------------------
+
+Adjacent nodes = current and current.next
+
+You can swap their data values (simplest method)
+
+
+Node t1=root ;t2=root.next;
+
+while(t1.next.next!=null&&t2.next!=null){
+    if(t1.data>t2.data){
+      int temp=t1.data;
+      t1.data=t2.data;
+      t2.data=temp;
+   }
+   t1=t1.next;
+   t2=t2.next;
+}
+
+------------------------------------------------------------------------------------
+sol;-
+Node t1, t2;
+boolean swapped;
+
+do {
+    swapped = false;
+    t1 = root;
+    t2 = root.next;
+
+    while (t2 != null) {
+        if (t1.data > t2.data) {
+            int temp = t1.data;
+            t1.data = t2.data;
+            t2.data = temp;
+            swapped = true;
+        }
+        t1 = t1.next;
+        t2 = t2.next;
+    }
+
+} while (swapped);
+
+
+Q1>implement Stack using linked list
+or                                 
+2>Dynamic version of stack
+
+
+
+
+
+----------------------
+   30    |  20      | 10      |
+                      
+_________________________
+L                       R
+
+
+
+
+Q2>implement Queue using linked list.
+
+front                     rear
+
+DSA Q---Mainly focus on stack , linkedlist and queue(80%)
+
+and other from tree +graph
+
+
+
+  Assign
+Q>Implementaion  of employee with CRUD operation using linkedlist.
+Q2>Implement polynomial addition using linkedlist.  ---
+
+addition of binary no using linkedlist(interview);
+
+
+
+Day4---------------------------------------------------------------------------(8:46)
+
+
+CircularLinked list
+
+leftdelete:-
+for single node 
+
+
+
+Drwback of linear linked list:
+traverse in only one direction>
+
+Sol: use doubly linked list----------------------------------------------------
+
+
+      ______________________
+                            |
+      |prev     |data  |next
+                            |
+     _______________________
+
+
+Q.implement doubly Circular linked list.
+
+
+
+Applicaton:-
+
+managing Dynamic memory
+In implementing stack, queue,graph entry.
+in data transfer
+IN computer graphics for motion(Kinematics structure of character) and screen(Fps/displacements).
+playlist
+polynomial addition.navigation over the internet:-we get the link to another page from previos page which contains the list of next page.
+
+
+
+Tree-----------------------------------------------------------------------(11:19)
+
+
+Tree:is a hierarchical structure.
+Requires guided function for provided access.
+Starts with the root grows with the branches and ends on a leaf.
+
+most imp is root(only stored and others referred)
+
+Application:
+Hirarchical/cloud storage.
+Large-scale data searching and sorting
+In geographical information system for imaging(Map)
+Auto-complete ,auto-correct(Tries)
+Used by in desicion-making called stste sapce tree.
+
+Q.can u explain how tries works?(interview).
+
+
+Binary tree:
+
+At most two child.
+DepthLength of longest runnkg barach)
+Hiwgher: Lesser the left
+
+
+DepthrLe: Lebtg of longgeat 
+dedides 
+
+
+
+
+
+
+Seenngn)()
+
+which ot the rgollwing 
+
+
+Types of tree
+1>CompleteNearly 
+2>Complete
+2>Binary Search tree
+Strict
+
+
+Qfind the  type of binary img is given.
+
+
+
+
+Q>Constructing Binary tree.j
+
+
+Tree-traversal:
+Ordrer of visting every node 
+
+Sequence:-
+
+1>preorder(+ab)
+2>inorder(a+b)
+
+3>postorder(ab+)
+
+
+Rule:-
+
+when u cut L :got to left
+when u cut R :got to Right
+when u cut P :print
+when all done go to parent
+
+
+                          
+
+Threaded tree
+
+
+
+
+AVL Tree:
+
+It is self balancing (if goes out of balance ,it will rotate itself to achieve balance)
+nearly balanced tree
+
+In AVL.insertion is done one node at a time 
+
+
+B-TREE--------------------------------------------------------------------
+
+example of multi-way search tree.
+.
+
+why M must be odd.
+Mid line is odd we can make we can make peratt the mid node
+
+
+
+
+Day5-------------------------------------------------------------------------------(15/11/2025)
+
+
+Various technique to implement a tree.
+1>static array
+Represent hierarchical  tree structure into flat array(interview).
+Ans :- 2i+1 (for left) and 
+       2i+2  for(right child )  
+       (i-1)/2   parent 
+          
+      
+             10
+           /     \
+         20       30
+                 /    \
+               40      50
+
+
+soln:
+     
+Index:  0   1   2   3    4    5    6
+Value: [10, 20, 30, -- , -- , 40 , 50]
+
+
+ 
+
+
+
+
+
+2>Dynamic DLL(Doubly Linked list) approach:-
+use of dnode
+
++ve: Dynamic allocation, compared to other methods easy
+-ve: need recurston method as  we can go only from top to bottom.
+   Child doesn't know about parent mean doesn't contains the address of parent
+
+
++--------+--------+--------+
+| prev   | data   | next   | 
+| (addr) | (val)  | (addr) |
++--------+--------+--------+
+
+
+
+3>Dynamic:tree node approach
+
++ve: can  use recursion and also. can use sequential normal coding(Stack
+
+Queue
+
+loops (while, for),  inorder,preorder postorder     ) for traversal of tree.
+-ve:-Too complex to implement and use due to multipl-pointer system.
+
+
+
+
+
++--------+--------+--------+--------+
+| prev   | data   | next   | parent |
+| (addr) | (val)  | (addr) | (addr) |
++--------+--------+--------+--------+
+
+
+Q>out of 3 type on implementation of tree which  would use and why?(interview)
+if i have  a tree which is arraned in sequence then i can use array (static),
+if i want  dynamic location then i go for Dynamic DLL(Doubly Linked list)
+
+and if i dont want recursion and use while loop or normal preorder,inorssder then  
+i go for >Dynamic:tree node approach
+
+
+
+
+1) If my tree is complete and arranged in sequence (like a heap), then I can use an array (static representation).
+Because the parent/child relationships can be calculated using index formulas, and memory is continuous.
+
+2) If I want dynamic memory allocation, where nodes can be inserted or deleted anywhere, then I use the linked-node representation (NOT DLL — doubly linked list is different).
+This is the standard dynamic tree implementation.
+
+3) If I don’t want to use recursion and prefer iterative traversal (while loops, stacks), I would still choose the dynamic tree-node representation, because it supports both recursive and iterative traversals.
+-ve:Too complex to implement and use due to multi-pointer
+system.
+
+ 
+
+Ask chatgpt :-what should i know about this company( particular company do)?
+
+Q.Why u would want apply for this job?->find the working of complany
+
+
+
+tree implementayion:--------------------------------------------------------
+inorder implementaion
+preorder
+inorder
+
+
+
+
+Graph--------------------------------------------------------------------
+
+
+Collection of interconnected via edges
+node:source of info  of interest 
+edges: Connection or some relation.
+
+
+graph without  cycle is a tree.
+
+tree with a cycle is a graph.
+Cycle is a path starting and ending on same node.
+
+
+
+Graph is a max used DS()---------------------------------------------
+
+Types of graph:
+Weighted:- have distance between the nodes. delay dit ,delay speed.
+Un-weigted:no dis
+directed a
+undirected
+
+
+
+Complete graph(CCEE)
+
+Degree:-
+indegree and outdegree  for directed graph
+
+
+
+Terminology
+Multiple edges
+
+which ds is used for security.
+
+which ds is used for biometric security.
+Ans:-graph is used for Security.
+
+
+
+Topological sort: used for production.
+
+
+
+Explain dfs and bfs(interview)
+
+Graph representation in matrix
+
+
+Q. Find which type of graph it is:-
+make a graph from the following matrix.
+
+BFS(
+Uses queue and perform parallel search) and
+ DFS( Uses stack and perform horizontal search)
+
+explain DFS on given matrix. from graph code(Interview):-
+
+
+For lab test(Sorting and any logical Question)
+
+
+
+
+
+
+
+

@@ -1,0 +1,428 @@
+//PRN: 250844520072
+//Name: Rukmani Kanwar
+//Email: rukmani08kanwar@gmail.com
+
+
+Q1: Longest Substring Without Repeating Characters
+
+static int  LongSubstring(String str){
+    if(str==null ) return 0;
+
+    char[] ch=str.toCharArray();
+    int first=0;
+    int ans=0;
+    int last;
+
+    for( last=0;last<ch.length;last++) {
+        int duplicateIndex = -1;
+        for (int k = first; k < last; k++) {
+            if (ch[k] == ch[last]) {
+                duplicateIndex = k;
+                break;
+            }
+        }
+
+        if (duplicateIndex != -1) {
+            first = duplicateIndex + 1;
+        }
+
+
+        int currentlength = last - first + 1;
+        if (currentlength > ans) {
+            ans = currentlength;
+        }
+
+    }
+return ans;
+
+}
+public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    String str;
+    System.out.println("Enter a string");
+    str=sc.next();
+    int ans2=LongSubstring(str);
+    System.out.println(ans2);
+
+}
+
+
+
+Q2: Delete Middle Element of a Stack
+
+
+
+void deleteMiddle(Stack<Integer>st, int curr , int mid){
+    if(curr==mid){
+        st.pop();
+        return;
+    }
+    int x= st.pop();
+
+    deleteMiddle(st, curr+ 1, mid);
+    st.push(x);
+
+
+}
+public void main(String[] args) {
+Stack<Integer> st= new Stack<>();
+Scanner sc= new Scanner(System.in);
+    System.out.print("Enter number of elements: ");
+    int n = sc.nextInt();
+
+    System.out.println("Enter " + n + " elements:");
+
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+
+        st.push(x);
+    }
+    int n1= st.size();
+    int mid =n1/2;
+    deleteMiddle(st, 0, mid);
+    System.out.println(st);
+
+}
+
+
+
+Q3: Check if Given Parentheses Expression is Balanced or Not
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+ class parentheseCheck {
+    public  static boolean Isbalancedparenthese(String s) {
+
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for (char ch : s.toCharArray()) {
+            if (ch == '{' || ch == '(' || ch == '[') {
+                stack.push(ch);
+            } else if (ch == '}' || ch == ')' || ch == ']') {
+                if (stack.isEmpty())
+                    return false;
+                char top = stack.pop();
+
+                if ((ch == '{' && ch != '}') || (ch == '(' && ch != ')') || (ch == '[' && ch != ']')) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the pattern to check");
+        String str=sc.nextLine();
+        System.out.println(Isbalancedparenthese(str));
+    }
+
+
+}
+
+
+
+
+
+Q4: Merge Two Sorted Lists
+
+
+import java.util.Scanner;
+
+class MergeLinked {
+
+    class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
+        }
+
+    }
+
+    ListNode root;
+
+
+    ListNode mergeLists(ListNode l1,  ListNode l2 ) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        if(l1==null) return l2;
+        if(l2==null) return l1;
+
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                tail.next = new ListNode(l1.val); // create new node
+                l1 = l1.next;
+            } else {
+                tail.next = new ListNode(l2.val);
+                l2 = l2.next;
+            }
+            tail = tail.next;
+        }
+
+        while (l1 != null) { tail.next = new ListNode(l1.val); tail = tail.next; l1 = l1.next; }
+        while (l2 != null) { tail.next = new ListNode(l2.val); tail = tail.next; l2 = l2.next; }
+        return dummy.next;
+
+
+
+    }
+
+    static void printList(ListNode head) {
+        if (head == null) {
+            System.out.println("[]");
+            return;
+        }
+
+        ListNode temp = head;
+        while (temp != null) {
+            System.out.print(temp.val + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    void main(String[] args) {
+
+        Scanner sc= new Scanner(System.in);
+        int n1,n2;
+        System.out.println("Enter the no of item for l1:");
+        n1=sc.nextInt();
+        System.out.println("Enter the no of item for l2:");
+        n2=sc.nextInt();
+
+        ListNode l1 = null, tail1 = null;
+        for(int i=0;i<n1;i++){
+            ListNode node = new ListNode(sc.nextInt());
+
+            if (l1 == null) {
+                l1 = node;
+                tail1 = node;
+            } else {
+                tail1.next = node;
+                tail1 = node;
+            }
+        }
+        ListNode l2 = null, tail2 = null;
+        for(int i=0;i<n2;i++){
+            ListNode node = new ListNode(sc.nextInt());
+
+            if (l2 == null) {
+                l2 = node;
+                tail2 = node;
+            } else {
+                tail2.next = node;
+                tail2 = node;
+            }
+        }
+
+
+//        ListNode l1 = new ListNode(1);
+//        l1.next = new ListNode(4);
+//        l1.next.next = new ListNode(5);
+//
+//
+//        ListNode l2 = new ListNode(3);
+//        l2.next = new ListNode(6);
+//        l2.next.next = new ListNode(7);
+
+
+
+
+
+        System.out.println("List 1:");
+        printList(l1);
+
+        System.out.println("List 2:");
+        printList(l2);
+
+        ListNode merged = mergeLists(l1, l2);
+
+        System.out.println("Mergedlist:");
+        printList(merged);
+    }
+
+}
+
+
+
+
+
+
+
+
+ Q5: Merge K Sorted Lists
+
+import java.util.Scanner;
+
+ class MergeKSorted {
+
+    static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int v) { val = v; }
+    }
+
+
+    static ListNode mergeKLists(ListNode[] lists) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+
+        while (true) {
+            int minIndex = -1;
+            int minValue = Integer.MAX_VALUE;
+
+
+            for (int i = 0; i < lists.length; i++) {
+                if (lists[i] != null && lists[i].val < minValue) {
+                    minValue = lists[i].val;
+                    minIndex = i;
+                }
+            }
+
+
+
+            if (minIndex == -1)
+                break;
+
+
+            tail.next = new ListNode(lists[minIndex].val);
+            tail = tail.next;
+
+
+            lists[minIndex] = lists[minIndex].next;
+        }
+
+        return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of lists (k): ");
+        int k = sc.nextInt();
+
+        ListNode[] lists = new ListNode[k];
+        System.out.println("If a list is empty, just press Enter.");
+        for (int i = 0; i < k; i++) {
+            System.out.print("List " + (i + 1) + ": ");
+            String line = sc.nextLine().trim();
+
+            if (line.isEmpty()) {
+                lists[i] = null; // empty list
+                continue;
+            }
+
+            String[] parts = line.split("\\s+");
+            ListNode head = null, tail = null;
+
+            for (String p : parts) {
+                int v = Integer.parseInt(p);
+                ListNode node = new ListNode(v);
+
+                if (head == null) {
+                    head = tail = node;
+                } else {
+                    tail.next = node;
+                    tail = node;
+                }
+            }
+
+            lists[i] = head;
+        }
+
+
+        System.out.println("\nInput Lists:");
+        for (int i = 0; i < k; i++) {
+            System.out.print("List " + (i + 1) + ": ");
+            ListNode t = lists[i];
+            if (t == null) {
+                System.out.println("[]");
+                continue;
+            }
+            while (t != null) {
+                System.out.print(t.val);
+                if (t.next != null) System.out.print(" -> ");
+                t = t.next;
+            }
+            System.out.println();
+        }
+
+        ListNode merged = mergeKLists(lists);
+
+        System.out.println("\nMerged List:");
+        ListNode t = merged;
+        if (t == null) {
+            System.out.println("[]");
+        } else {
+            while (t != null) {
+                System.out.print(t.val);
+                if (t.next != null) System.out.print(" -> ");
+                t = t.next;
+            }
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
+
+
+
+
+
+
+Q6: The Celebrity Problem
+import java.util.Scanner;
+import java.util.*;
+  class Celebrity {
+    public int celebrity(int[][] C) {
+        int n = C.length;
+
+        int top = 0, down = n - 1;
+
+        while (top < down) {
+            if (C[top][down] == 1) {
+                top = top + 1;
+            } else if (C[down][top] == 1) {
+
+                down = down - 1;
+            }
+
+            else {
+                top++;
+                down--;
+            }
+        }
+
+        if (top > down) return -1;
+
+        for (int i = 0; i < n; i++) {
+            if (i == top) continue;
+            if (C[top][i] == 1 || C[i][top] == 0) {
+                return -1;
+            }
+        }
+        return top;
+    }
+
+    public static void main(String[] args) {
+
+        int[][] C = {
+                {0, 1, 1, 0},
+                {0, 0, 0, 0},
+                {1, 1, 0, 0},
+                {0, 1, 1, 0}
+        };
+        Celebrity S = new Celebrity();
+        int res = S.celebrity(C);
+        System.out.println("the index of the celebrity is " + res);
+    }
+}
+
+

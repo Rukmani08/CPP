@@ -1,0 +1,138 @@
+PRN:  250844520072
+Name: Rukmani Kanwar
+Gmail:-rukmani08kanwar@gmail.com
+//
+// Q 1
+//
+
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+
+public class ConvertInFixtoPostFix {
+    static int precedence(char ch)
+    {
+        if(ch == '+' || ch == '-')
+            return 1;
+        if(ch == '*' || ch == '/')
+            return 2;
+        if(ch == '^')
+            return 3;
+
+        return -1;
+    }
+
+    static String convert(String str)
+    {
+        //String<Character> str = new Stack<>();
+
+        Deque<Character>stack=new ArrayDeque<>();
+        String result ="";
+
+        for(char ch : str.toCharArray())
+        {
+            if (Character.isLetterOrDigit(ch))
+                result +=ch;
+            else if(ch=='(')
+                stack.push(ch);
+            else if(ch == ')')
+            {
+                while(!stack.isEmpty() && stack.peek() != '(')
+                    result += stack.pop();
+                stack.pop();
+            }
+            else
+            {
+                while(!stack.isEmpty() && precedence(ch) <= precedence(stack.peek()))
+                    result +=stack.pop();
+                stack.push(ch);
+
+
+
+
+            }
+        }
+        while(!stack.isEmpty())
+            result += stack.pop();
+
+        return result;
+    }
+    public static void main(String[] args) {
+
+        Scanner sc =new Scanner(System.in);
+        System.out.println("Enter Infix Expression");
+        String a = sc.next();
+
+        String postfix = InFixPostFix.convert(a);
+        System.out.println("postfix expression: " +postfix);
+
+    }
+}
+
+
+
+//Q.2
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+
+public class EvaluatePreFix {
+
+    public static int evaluate (String str)
+    {
+        Deque<Integer>stack=new ArrayDeque<>();
+
+
+        for(int i= str.length()-1; i>=0; i--)
+        {
+            char ch= str.charAt(i);
+
+            if(Character.isDigit(ch))
+            {
+                stack.push(ch - '0');
+            }
+            else
+            {
+                int a=stack.pop();
+                int b=stack.pop();
+
+                switch(ch)
+                {
+                    case '+':
+                        stack.push(a+b);
+                        break;
+                    case '-':
+                        stack.push(a-b);
+                        break;
+                    case '*':
+                        stack.push(a*b);
+                        break;
+                    case '/':
+                        stack.push(a/b);
+                        break;
+
+                }
+            }
+
+        }
+        return stack.pop();
+
+    }
+    public static void main(String[] args) {
+
+        Scanner sc =new Scanner(System.in);
+        System.out.println("Enter prefix Expression");
+        String a = sc.next();
+
+        int result = evaluate(a);
+        System.out.println("evaluate prefix expression: " +result);
+
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+//PRN: 250844520072
+//Name: Rukmani kanwar
+//Email: rukmani08kanwar@gmail.com
+
+Q 2)
+
+public class LinkedListAssign2 {
+    
+    public static class Pnode{
+        int coff;
+        int pow;
+        Pnode next;
+
+        Pnode(int coff,int pow){
+            this.coff = coff;
+            this.pow = pow;
+            this.next = null;
+        }
+
+        public static Pnode addPolynomial(Pnode A,Pnode B){
+            Pnode dummy = new Pnode(0, 0);
+            Pnode root = dummy;
+
+            while (A != null && B != null){
+                if (A.pow == B.pow){
+                    int sum = A.coff + B.coff;
+                    if (sum!= 0){
+                        root.next = new Pnode(sum, A.pow);
+                        root = root.next;
+                    }
+                A = A.next;
+                B = B.next;   
+                }
+                else if (A.pow > B.pow){
+                    root.next = new Pnode(A.coff, A.pow);
+                    root = root.next;
+                    A = A.next;
+                }
+                else{
+                    root.next = new Pnode(B.coff, B.pow);
+                    root = root.next;
+                    B = B.next;
+                } 
+            }
+
+            while (A != null){
+                root.next = new Pnode(A.coff, A.pow);
+                root = root.next;
+                A = A.next;
+            }
+            while (B != null){
+                root.next = new Pnode(B.coff, B.pow);
+                root = root.next;
+                B = B.next;
+            }
+            return dummy.next;
+        }
+
+        public static void PrintList(Pnode head){
+            while (head.next!= null){
+                System.out.print(head.coff +"x^"+ head.pow + "+");
+                head = head.next;
+            }
+            System.out.print(head.coff + "x^" + head.pow);
+        }
+    }
+
+    public static void main(String[] args) {
+        // A = 5x^3 + 4x^2 + 2x^0
+
+        Pnode A = new Pnode(5, 3);
+        A.next = new Pnode(4, 2);
+        A.next.next = new Pnode(2, 0);
+
+        // B = 5x^3 + 5x^1 + 5x^0
+
+        Pnode B = new Pnode(5, 3);
+        B.next = new Pnode(5, 1);
+        B.next.next = new Pnode(5, 0);
+
+        Pnode result = Pnode.addPolynomial(A,B); 
+        Pnode.PrintList(result);
+    }
+}
+
